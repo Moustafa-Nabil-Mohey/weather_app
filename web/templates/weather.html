@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Now</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+{% include "nav.html" %}
+
+<div class="container mt-4">
+
+    <form method="get" action="/weather" class="input-group mb-4">
+        <input type="text" name="city" class="form-control" placeholder="Enter city name..." required>
+        <button class="btn btn-primary">Search</button>
+    </form>
+
+    {% if weather %}
+        <div class="card p-4 shadow-sm">
+            <h3>{{ city }}</h3>
+            <p>🌡️ Temperature: <b>{{ weather.temp }}°C</b></p>
+            <p>💧 Humidity: <b>{{ weather.humidity }}%</b></p>
+            <p>🌬️ Wind: <b>{{ weather.wind }} m/s</b></p>
+            <p>☁️ Condition: <b>{{ weather.description }}</b></p>
+        </div>
+    {% else %}
+        <p class="text-danger">No weather data found.</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
